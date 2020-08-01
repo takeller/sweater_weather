@@ -7,7 +7,8 @@ class ForecastResults
 
   def forecast(location)
     lat_long = get_lat_long(location)
-    get_forecast(lat_long)
+    raw_forecast = get_forecast(lat_long)
+    Forecast.new(raw_forecast)
   end
 
 private
@@ -18,8 +19,5 @@ private
 
   def get_forecast(lat_long)
     response = @open_weather_service.forecast(lat_long)
-    current = response[:current]
-    hourly = response[:hourly]
-    daily = response[:daily]
   end
 end

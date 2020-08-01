@@ -2,7 +2,7 @@ class OpenWeatherService
   include ServiceHelper
 
   def forecast(lat_long)
-    get_json("/data/2.5/onecall", {lat: lat_long[:lat], lon: lat_long[:lng]})
+    get_json("/data/2.5/onecall", {lat: lat_long[:lat], lon: lat_long[:lng], exclude: 'minutely'})
   end
 
   private
