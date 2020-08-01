@@ -9,6 +9,6 @@ describe 'Forecast API' do
 
     forecast = JSON.parse(response.body, symbolize_names: true)
 
-    expect(forecast[:data].keys).to match_array([:current_weather]) 
+    expect(forecast[:data].keys).to match_array([:current_weather])
   end
 end

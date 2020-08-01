@@ -27,6 +27,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'faker'
 gem 'fast_jsonapi'
+gem 'faraday'
+gem 'figaro'
 gem 'simplecov', require: false, group: :test
 
 group :development, :test do
