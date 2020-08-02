@@ -24,7 +24,7 @@ private
   end
 
   def get_forecast(lat_long)
-    response = @open_weather_service.forecast(lat_long)
+    @open_weather_service.forecast(lat_long)
   end
 
   def format_forecast(raw_forecast, location)
