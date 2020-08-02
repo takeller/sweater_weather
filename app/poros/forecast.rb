@@ -20,7 +20,7 @@ class Forecast
       humidity: raw_forecast[:current][:humidity],
       visibility: raw_forecast[:current][:visibility] * 0.000621371,
       uvi: raw_forecast[:current][:uvi],
-      icon: raw_forecast[:current][:weather][0][:icon]
+      icon: get_icon_image(raw_forecast[:current][:weather][0][:icon])
     }
   end
 
@@ -30,7 +30,7 @@ class Forecast
         time: Time.at(hourly_forecast[:dt]).strftime('%l%p'),
         temp: hourly_forecast[:temp].round,
         weather: hourly_forecast[:weather][0][:description],
-        icon: hourly_forecast[:weather][0][:icon],
+        icon: get_icon_image(hourly_forecast[:weather][0][:icon])
       }
     end[0..7]
   end
@@ -40,7 +40,7 @@ class Forecast
       {
         day: Time.at(daily_forecast[:dt]).strftime('%A'),
         forecast: daily_forecast[:weather][0][:main],
-        icon: daily_forecast[:weather][0][:icon],
+        icon: get_icon_image(daily_forecast[:weather][0][:icon]),
         precipitation: precipitation(daily_forecast),
         high: daily_forecast[:temp][:max].round,
         low: daily_forecast[:temp][:min].round
@@ -58,5 +58,9 @@ class Forecast
     else
       0
     end
+  end
+
+  def get_icon_image(icon_code)
+    "http://openweathermap.org/img/wn/#{icon_code}@2x.png"
   end
 end
