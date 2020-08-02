@@ -6,15 +6,19 @@ class ForecastResults
   end
 
   def forecast(location)
-    lat_long = get_lat_long(location)
-    raw_forecast = get_forecast(lat_long)
-    Forecast.new(raw_forecast)
+    geocoded_location = geocode(location)
+    raw_forecast = get_forecast(geocoded_location[:lat_long])
+    Forecast.new(raw_forecast, geocoded_location)
   end
 
 private
-  def get_lat_long(location)
+  def geocode(location)
     response = @map_quest_service.geocode(location)
-    response[:results][0][:locations][0][:latLng]
+    {
+      location: response[:results][0][:providedLocation][:location],
+      country: response[:results][0][:locations][0][:adminArea1],
+      lat_long: response[:results][0][:locations][0][:latLng]
+    }
   end
 
   def get_forecast(lat_long)
