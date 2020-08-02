@@ -1,6 +1,6 @@
 module ForecastFormatter
   def current(raw_forecast)
-
+    {
       weather: raw_forecast[:current][:weather][0][:description],
       time: Time.at(raw_forecast[:current][:dt]).strftime('%l:%M %p, %B%e'),
       temp: raw_forecast[:current][:temp].round,

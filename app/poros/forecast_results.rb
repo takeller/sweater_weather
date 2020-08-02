@@ -10,6 +10,7 @@ class ForecastResults
     geocoded_location = geocode(location)
     raw_forecast = get_forecast(geocoded_location[:lat_long])
     formatted_forecast = format_forecast(raw_forecast, geocoded_location)
+    binding.pry
     Forecast.new(formatted_forecast)
   end
 
@@ -29,10 +30,10 @@ private
 
   def format_forecast(raw_forecast, location)
     {
-      location: location,
-      current: current(raw_forecast),
-      hourly: hourly(raw_forecast),
-      daily: daily(raw_forecast)
+      location: JSON.generate(location),
+      current: JSON.generate(current(raw_forecast)),
+      hourly: JSON.generate(hourly(raw_forecast)),
+      daily: JSON.generate(daily(raw_forecast))
     }
   end
 end
