@@ -8,7 +8,7 @@ describe 'Forecast API' do
     expect(response).to be_successful
 
     forecast = JSON.parse(response.body, symbolize_names: true)
-
+    binding.pry
     expect(forecast[:data].keys).to match_array([:current_weather])
   end
 end

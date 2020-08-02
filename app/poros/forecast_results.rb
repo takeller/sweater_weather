@@ -1,4 +1,5 @@
 class ForecastResults
+  include ForecastFormatter
 
   def initialize
     @open_weather_service ||= OpenWeatherService.new
@@ -8,7 +9,8 @@ class ForecastResults
   def forecast(location)
     geocoded_location = geocode(location)
     raw_forecast = get_forecast(geocoded_location[:lat_long])
-    Forecast.new(raw_forecast, geocoded_location)
+    formatted_forecast = format_forecast(raw_forecast, geocoded_location)
+    Forecast.new(formatted_forecast)
   end
 
 private
@@ -23,5 +25,14 @@ private
 
   def get_forecast(lat_long)
     response = @open_weather_service.forecast(lat_long)
+  end
+
+  def format_forecast(raw_forecast, location)
+    {
+      location: location,
+      current: current(raw_forecast),
+      hourly: hourly(raw_forecast),
+      daily: daily(raw_forecast)
+    }
   end
 end
