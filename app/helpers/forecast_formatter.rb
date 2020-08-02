@@ -29,7 +29,7 @@ module ForecastFormatter
     raw_forecast[:daily].map do |daily_forecast|
       {
         day: Time.at(daily_forecast[:dt]).strftime('%A'),
-        forecast: daily_forecast[:weather][0][:main],
+        weather: daily_forecast[:weather][0][:main],
         icon: get_icon_image(daily_forecast[:weather][0][:icon]),
         precipitation: precipitation(daily_forecast),
         high: daily_forecast[:temp][:max].round,
