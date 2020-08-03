@@ -8,7 +8,7 @@ describe 'Registration endpoint' do
       "password" => "password",
       "password_confirmation" => "password"
     }
-    post "/api/v1/users", params: body, headers: headers
+    post "/api/v1/users", params: body.to_json, headers: headers
 
     expect(response).to be_successful
     expect(response.status).to eq(201)

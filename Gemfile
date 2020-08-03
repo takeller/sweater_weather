@@ -29,6 +29,7 @@ gem 'faker'
 gem 'fast_jsonapi'
 gem 'faraday'
 gem 'figaro'
+gem 'bcrypt'
 gem 'simplecov', require: false, group: :test
 
 group :development, :test do
