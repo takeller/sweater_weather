@@ -8,7 +8,7 @@ describe 'Trails Endpoint' do
 
     current_forecast = JSON.parse(response.body, symbolize_names: true)
     current_forecast = current_forecast[:data][:attributes]
-    binding.pry
+
     expect(current_forecast[:location].present?).to eq(true)
     expect(current_forecast[:forecast].present?).to eq(true)
     expect(current_forecast[:forecast][:summary].present?).to eq(true)
