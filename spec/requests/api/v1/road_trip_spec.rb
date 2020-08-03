@@ -20,4 +20,29 @@ describe 'POST /api/v1/road_trip' do
     expect(road_trip[:travel_time].present?).to eq(true)
     expect(road_trip[:forecast].present?).to eq(true)
   end
+
+  it 'Returns a 401 error if api key is missing' do
+    headers = { "Content-Type" => "application/json", "Accept" => "application/json"}
+    body = {
+      "origin": "Denver,CO",
+      "destination": "Pueblo,CO",
+      "api_key": "jgn983hy48thw9begh98h4539h4"
+    }
+    post "/api/v1/road_trip", params: body.to_json, headers: headers
+
+    expect(response.status).to eq(401)
+  end
+
+  it 'Returns a 401 error if api key is incorrect' do
+    User.create(email: "whatever@example.com", password: "password", password_confirmation: "password", api_key: "123456789")
+    headers = { "Content-Type" => "application/json", "Accept" => "application/json"}
+    body = {
+      "origin": "Denver,CO",
+      "destination": "Pueblo,CO",
+      "api_key": "jgn983hy48thw9begh98h4539h4"
+    }
+    post "/api/v1/road_trip", params: body.to_json, headers: headers
+
+    expect(response.status).to eq(401)
+  end
 end
