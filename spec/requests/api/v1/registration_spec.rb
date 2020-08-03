@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Registration endpoint' do
+describe 'POST /api/v1/users' do
   it 'Can post a new user' do
     headers = { "Content-Type" => "application/json", "Accept" => "application/json"}
     body = {
@@ -16,7 +16,7 @@ describe 'Registration endpoint' do
     user = JSON.parse(response.body, symbolize_names: true)
     user = user[:data]
 
-    expect(user[:type]).to eq('users')
+    expect(user[:type]).to eq('user')
     expect(user[:attributes][:email]).to eq(body["email"])
     expect(user[:attributes][:api_key].present?).to eq(true)
   end
