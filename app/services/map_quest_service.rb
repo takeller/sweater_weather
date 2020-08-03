@@ -5,6 +5,10 @@ class MapQuestService
     get_json("/geocoding/v1/address", {location: location})
   end
 
+  def directions(end_location, start_location)
+   get_json("/directions/v2/route", {from: start_location, to: end_location})
+  end
+
   private
 
   def conn
