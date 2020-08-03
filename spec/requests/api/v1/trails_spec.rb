@@ -21,6 +21,7 @@ describe 'Trails Endpoint' do
     expect(response).to be_successful
 
     trails = JSON.parse(response.body, symbolize_names: true)
+    binding.pry
     trails = trails[:data][:attributes]
 
     expect(trails[:trails][0][:name].present?).to eq(true)
