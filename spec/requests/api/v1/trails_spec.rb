@@ -21,13 +21,30 @@ describe 'Trails Endpoint' do
     expect(response).to be_successful
 
     trails = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
-    trails = trails[:data][:attributes]
+    trails = trails[:data][:attributes][:trails]
+    trails.each do |trail|
+      expect(trail[:name].present?).to eq(true)
+      expect(trail[:summary].present?).to eq(true)
+      expect(trail[:difficulty].present?).to eq(true)
+      expect(trail[:location].present?).to eq(true)
+      expect(trail[:distance_to_trail].present?).to eq(true)
+    end
+  end
 
-    expect(trails[:trails][0][:name].present?).to eq(true)
-    expect(trails[:trails][0][:summary].present?).to eq(true)
-    expect(trails[:trails][0][:difficulty].present?).to eq(true)
-    expect(trails[:trails][0][:location].present?).to eq(true)
-    expect(trails[:trails][0][:distance_to_trail].present?).to eq(true)
+  it 'Can handle locations other than Denver' do
+    get '/api/v1/trails?location=roanoke,va'
+
+    expect(response).to be_successful
+
+    trails = JSON.parse(response.body, symbolize_names: true)
+    trails = trails[:data][:attributes][:trails]
+
+    trails.each do |trail|
+      expect(trail[:name].present?).to eq(true)
+      expect(trail[:summary].present?).to eq(true)
+      expect(trail[:difficulty].present?).to eq(true)
+      expect(trail[:location].present?).to eq(true)
+      expect(trail[:distance_to_trail].present?).to eq(true)
+    end
   end
 end
