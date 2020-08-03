@@ -1,7 +1,6 @@
 class Api::V1::RoadTripController < ApplicationController
 
   def index
-    road_trip_params = JSON.parse(request.body.read, symbolize_names: true)
     api_key = road_trip_params[:api_key]
     if api_key.nil?
       render json: "Missing API Key", status: 401
@@ -18,5 +17,11 @@ class Api::V1::RoadTripController < ApplicationController
     else
       render json: "Bad Request", status: 400
     end
+  end
+
+  private
+
+  def road_trip_params
+    JSON.parse(request.body.read, symbolize_names: true)
   end
 end
