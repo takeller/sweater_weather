@@ -15,10 +15,9 @@ describe 'POST /api/v1/road_trip' do
 
     road_trip = JSON.parse(response.body, symbolize_names: true)
     road_trip = road_trip[:data][:attributes]
-
-    expect(road_trip[:origin]).to eq("Denver, CO")
-    expect(road_trip[:destination]).to eq("Pueblo, CO")
-    expect(road_trip[:travel_time]).to eq("2 Hours")
-    expect(road_trip[:arrival_forecast].present?).to eq(true)
+    expect(road_trip[:origin]).to eq("Denver,CO")
+    expect(road_trip[:destination]).to eq("Pueblo,CO")
+    expect(road_trip[:travel_time].present?).to eq(true)
+    expect(road_trip[:forecast].present?).to eq(true)
   end
 end
