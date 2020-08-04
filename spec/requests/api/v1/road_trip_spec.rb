@@ -30,7 +30,7 @@ describe 'POST /api/v1/road_trip' do
     post "/api/v1/road_trip", params: body.to_json, headers: headers
 
     expect(response.status).to eq(401)
-    expect(response.body).to eq("Missing API Key")
+    expect(response.body).to eq("Invalid credentials")
   end
 
   it 'Returns a 401 error if api key is incorrect' do
@@ -44,7 +44,7 @@ describe 'POST /api/v1/road_trip' do
     post "/api/v1/road_trip", params: body.to_json, headers: headers
 
     expect(response.status).to eq(401)
-    expect(response.body).to eq("Invalid API Key")
+    expect(response.body).to eq("Invalid credentials")
   end
 
   it 'Returns a 400 error if origin is missing' do
@@ -58,7 +58,7 @@ describe 'POST /api/v1/road_trip' do
     post "/api/v1/road_trip", params: body.to_json, headers: headers
 
     expect(response.status).to eq(400)
-    expect(response.body).to eq("Missing origin location")
+    expect(response.body).to eq("Invalid location")
   end
 
   it 'Returns a 400 error if destination is missing' do
@@ -72,6 +72,6 @@ describe 'POST /api/v1/road_trip' do
     post "/api/v1/road_trip", params: body.to_json, headers: headers
 
     expect(response.status).to eq(400)
-    expect(response.body).to eq("Missing destination location")
+    expect(response.body).to eq("Invalid location")
   end
 end
