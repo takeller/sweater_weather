@@ -9,7 +9,7 @@ module ForecastFormatter
       feels_like: raw_forecast[:current][:feels_like].round,
       humidity: raw_forecast[:current][:humidity],
       visibility: raw_forecast[:current][:visibility] * 0.000621371,
-      uvi: raw_forecast[:current][:uvi],
+      uvi: format_uvi(raw_forecast[:current][:uvi]),
       icon: get_icon_image(raw_forecast[:current][:weather][0][:icon])
     }
   end
@@ -22,7 +22,7 @@ module ForecastFormatter
         weather: hourly_forecast[:weather][0][:description],
         icon: get_icon_image(hourly_forecast[:weather][0][:icon])
       }
-    end[0..7]
+    end
   end
 
   def daily(raw_forecast)
@@ -52,5 +52,16 @@ module ForecastFormatter
 
   def get_icon_image(icon_code)
     "http://openweathermap.org/img/wn/#{icon_code}@2x.png"
+  end
+
+  def format_uvi(uvi)
+    uvi = uvi.round
+    case uvi
+    when 0..2 then "#{uvi} (low)"
+    when 3..5 then "#{uvi} (moderate)"
+    when 6..7 then "#{uvi} (high)"
+    when 8..10 then "#{uvi} (very high)"
+    when uvi > 10 then "#{uvi} (extreme)"
+    end
   end
 end

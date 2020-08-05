@@ -31,7 +31,7 @@ private
     {
       location: location,
       current: current(raw_forecast),
-      hourly: hourly(raw_forecast),
+      hourly: hourly(raw_forecast)[0..7],
       daily: daily(raw_forecast)
     }
   end
