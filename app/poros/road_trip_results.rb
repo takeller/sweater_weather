@@ -18,15 +18,16 @@ class RoadTripResults
     {
       origin: road_trip_params[:origin],
       destination: road_trip_params[:destination],
-      travel_time: travel_time,
-      forecast: format_forecast(forecast)
+      travel_time: format_travel_time(travel_time),
+      forecast: format_forecast(forecast, travel_time)
     }
   end
 
-  def format_forecast(forecast)
+  def format_forecast(forecast, travel_time_minutes)
+    travel_time_hours = (travel_time_minutes/60.0).round
     {
-      temp: forecast[:current]['temp'],
-      weather: forecast[:current]['weather']
+      temp: forecast[:hourly][travel_time_hours]['temp'],
+      weather: forecast[:hourly][travel_time_hours]['weather']
     }
   end
 
@@ -35,6 +36,9 @@ class RoadTripResults
     destination = road_trip_params[:destination]
     directions = @map_quest_service.directions(origin, destination)
     minutes = directions[:route][:realTime]/60
-    "#{minutes / 60}:#{minutes % 60}"
+  end
+
+  def format_travel_time(travel_time)
+    "#{travel_time / 60}:#{travel_time % 60}"
   end
 end
