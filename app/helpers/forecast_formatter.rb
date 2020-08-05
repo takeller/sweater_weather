@@ -61,7 +61,7 @@ module ForecastFormatter
     when 3..5 then "#{uvi} (moderate)"
     when 6..7 then "#{uvi} (high)"
     when 8..10 then "#{uvi} (very high)"
-    when uvi > 10 then "#{uvi} (extreme)"
+    when 11..20 then "#{uvi} (extreme)"
     end
   end
 end

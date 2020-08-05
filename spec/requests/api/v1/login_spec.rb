@@ -6,7 +6,7 @@ describe 'POST /api/v1/sessions' do
     headers = { "Content-Type" => "application/json", "Accept" => "application/json"}
     body = {
       "email" => "whatever@example.com",
-      "password" => "password",
+      "password" => "password"
     }
     post "/api/v1/sessions", params: body.to_json, headers: headers
 
