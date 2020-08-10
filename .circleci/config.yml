@@ -11,6 +11,7 @@ jobs:
       - checkout
       - run:
           name: Which bundler?
-          command: bundle -v
-            - gem install bundler
+          command: |
+            gem install bundler
+            bundle -v
       - ruby/bundle-install
