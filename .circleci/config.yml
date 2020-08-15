@@ -29,8 +29,8 @@ jobs:
             bundle -v
       - run: bundle install
       - run: sudo apt install -y postgresql-client || true
-      - run: bundle exec db:create
-      - run: bundle exec db:migrate
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:migrate
       - run:
           name: Run tests
           command: bundle exec rspec
