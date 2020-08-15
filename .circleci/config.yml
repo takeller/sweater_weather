@@ -28,8 +28,8 @@ jobs:
             gem install bundler
             bundle -v
       - run: sudo apt install -y postgresql-client || true
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:structure:load
+      - run: bundle exec db:create
+      - run: bundle exec db:migrate
       - run:
           name: Run tests
           command: bundle exec rspec
