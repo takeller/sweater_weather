@@ -27,7 +27,7 @@ jobs:
           command: |
             gem install bundler
             bundle -v
-      - ruby/bundle-install
+      - run: ruby/bundle-install
       - run: service postgresql start
       - run: bundle exec rake db:create db:schema:load
       - run:
