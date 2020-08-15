@@ -27,6 +27,7 @@ jobs:
           command: |
             gem install bundler
             bundle -v
+      - run: bundle install
       - run: sudo apt install -y postgresql-client || true
       - run: bundle exec db:create
       - run: bundle exec db:migrate
