@@ -20,9 +20,7 @@ jobs:
       - image: circleci/ruby:2.6.3-stretch-node
       - image: circleci/postgres:9.6
         environment:
-          POSTGRES_USER: root
           POSTGRES_DB: circle_test
-          POSTGRES_PASSWORD: ""
     executor: ruby/default
     steps:
       - checkout
