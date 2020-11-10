@@ -1,24 +1,11 @@
-# README
+# Purpose 
+This project was built during my time at the Turing School of Software and Design. The learning goal were to: 
+- Expose an API that aggregates data from multiple external APIs
+- Expose an API that requires an authentication token
+- Expose an API for CRUD functionality
+- Determine completion criteria based on the needs of other developers
+- Research, select, and consume an API based on your needs as a developer
+Link to requirements: https://backend.turing.io/module3/projects/sweater_weather/requirements
+# Getting Started 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Endpoints
