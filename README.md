@@ -1,5 +1,5 @@
 # Purpose 
-This project was built during my time at the Turing School of Software and Design. The learning goal were to: 
+This project was built during my time at the Turing School of Software and Design. The learning goals were to: 
 - Expose an API that aggregates data from multiple external APIs
 - Expose an API that requires an authentication token
 - Expose an API for CRUD functionality
